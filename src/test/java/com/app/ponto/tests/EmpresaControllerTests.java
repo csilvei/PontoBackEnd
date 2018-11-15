@@ -64,11 +64,12 @@ public class EmpresaControllerTests extends PontoApplicationTest{
     public void buscarEmpresasTest() throws Exception {
 
 
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/empresa/buscaempresa")
-    			.param("cnpj", "11111111");
-			    this.mockMvc.perform(builder)
-			    .andExpect(MockMvcResultMatchers.status().isOk())
-			    .andDo(MockMvcResultHandlers.print());
+    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/empresa/busca")
+    			.contentType(MediaType.APPLICATION_JSON)
+    			.content("{" + "\"cnpj\":\"" + "11111111" + "\"}");
+    			this.mockMvc.perform(builder)
+    			.andExpect(MockMvcResultMatchers.status().isOk())
+    			.andDo(MockMvcResultHandlers.print());
     }
     
     private static String createEmpresaInJson (String nome, String cnpj, String regime) {
