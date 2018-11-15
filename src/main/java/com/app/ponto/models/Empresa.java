@@ -26,16 +26,16 @@ public class Empresa implements Serializable{
 	private String nome;
 	
 	@NotNull
-	private long cnpj;
+	private String cnpj;
 	@NotNull
-	private long regime;
+	private int regime;
 	
 	
-	public long getCnpj() {
+	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(long cnpj) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 
@@ -60,7 +60,7 @@ public class Empresa implements Serializable{
 		return regime;
 	}
 
-	public void setRegime(long regime) {
+	public void setRegime(int regime) {
 		this.regime = regime;
 	}
 	

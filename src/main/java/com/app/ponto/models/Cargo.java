@@ -26,7 +26,7 @@ public class Cargo implements Serializable{
 	private long codigo;
 	
 	@NotNull
-	private long nome;
+	private String nome;
 	
 	@NotNull
 	private long empresa;
@@ -50,11 +50,11 @@ public class Cargo implements Serializable{
 		this.codigo = codigo;
 	}
 
-	public long getNome() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(long nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 

@@ -65,7 +65,7 @@ public class EmpresaControllerTests extends PontoApplicationTest{
 
 
     	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/empresa/buscaempresa")
-    			.param("cnpj", "11111");
+    			.param("cnpj", "11111111");
 			    this.mockMvc.perform(builder)
 			    .andExpect(MockMvcResultMatchers.status().isOk())
 			    .andDo(MockMvcResultHandlers.print());

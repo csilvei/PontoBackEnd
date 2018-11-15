@@ -34,7 +34,7 @@ public class EmpresaController {
 	  }	 	
 	 
 	 @GetMapping(value = "/buscaempresa")
-	 public ResponseEntity<Empresa> findBycnpj(@RequestParam(value="cnpj", required=false) long cnpj) {
+	 public ResponseEntity<Empresa> findBycnpj(@RequestParam(value="cnpj", required=false) String cnpj) {
 	 		boolean achou = false;
 	 		Empresa alvo = null;
 	 		Iterable<Empresa> empresas = er.findAll();
