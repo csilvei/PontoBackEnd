@@ -1,5 +1,7 @@
 package com.app.ponto.controllers;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,20 +38,20 @@ public class EmpresaController {
 	  }	 	
 	 
 	 @PostMapping("/busca")
-	 public ResponseEntity<Empresa> findBycnpj(@RequestBody String cnpj) {
+	 public ResponseEntity<ArrayList<Empresa>> findBycnpj(@RequestBody String cnpj) {
 	 		boolean achou = false;
-	 		Empresa alvo = null;
+	 		ArrayList<Empresa> alvo = new ArrayList<Empresa>();
 	 		Iterable<Empresa> empresas = er.findAll();
 	         for (Empresa empresaB : empresas) {
 	             if(empresaB.getCnpj() == cnpj) {
 	            	 achou = true;
-	            	 alvo = empresaB;
+	            	 alvo.add(empresaB);
 	             }
 	         }
 	         if(achou){  
                  return ResponseEntity.ok(alvo);
              }else {
-            	 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            	 return ResponseEntity.ok(alvo);
              }   
 	    }
 }	

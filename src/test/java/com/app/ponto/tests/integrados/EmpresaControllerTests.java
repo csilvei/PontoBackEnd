@@ -1,6 +1,8 @@
-package com.app.ponto.tests;
+package com.app.ponto.tests.integrados;
 
 import com.app.ponto.controllers.EmpresaController;
+import com.app.ponto.tests.PontoApplicationTest;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,7 +59,7 @@ public class EmpresaControllerTests extends PontoApplicationTest{
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().string("[{\"id\":1,\"nome\":\"empresteste\",\"cnpj\":111111111111111,\"regime\":8},{\"id\":2,\"nome\":\"empresteste\",\"cnpj\":111111111111111,\"regime\":8}]"));
+                .andExpect(content().string("[{\"id\":1,\"nome\":\"empresteste\",\"cnpj\":111111111111111,\"regime\":8}]"));
     }
     
     @Test
@@ -66,7 +68,7 @@ public class EmpresaControllerTests extends PontoApplicationTest{
 
     	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/empresa/busca")
     			.contentType(MediaType.APPLICATION_JSON)
-    			.content("{" + "\"cnpj\":\"" + "11111111" + "\"}");
+    			.content("{" + "\"cnpj\":\"" + "111111111111111" + "\"}");
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
     			.andDo(MockMvcResultHandlers.print());

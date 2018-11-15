@@ -1,5 +1,7 @@
 package com.app.ponto.controllers;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,20 +36,20 @@ public class EmpregadoController {
 	  }	 	
 	 
 	 @PostMapping(value = "/buscar")
-	 public ResponseEntity<Empregado> logout(@RequestBody String cpf) {
+	 public ResponseEntity<ArrayList<Empregado>> logout(@RequestBody String cpf) {
 	 		boolean achou = false;
-	 		Empregado alvo = null;
+	 		ArrayList<Empregado> alvo = new ArrayList<Empregado>();
 	 		Iterable<Empregado> empregados = er.findAll();
 	         for (Empregado empB : empregados) {
 	             if(empB.getCpf() == cpf) {
 	            	 achou = true;
-	            	 alvo = empB;
+	            	 alvo.add(empB);
 	             }
 	         }
 	         if(achou){  
                  return ResponseEntity.ok(alvo);
              }else {
-            	 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            	 return ResponseEntity.ok(alvo);
              }   
 	    }
 }	

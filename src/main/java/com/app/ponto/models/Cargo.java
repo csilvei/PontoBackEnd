@@ -1,6 +1,7 @@
 package com.app.ponto.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -23,16 +24,13 @@ public class Cargo implements Serializable{
 	private long   id;
 	
 	@NotNull
-	private long codigo;
-	
-	@NotNull
 	private String nome;
 	
 	@NotNull
 	private long empresa;
 	
 	@NotNull
-	private double valor;
+	private BigDecimal valor;
 
 	public long getId() {
 		return id;
@@ -40,14 +38,6 @@ public class Cargo implements Serializable{
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(long codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -66,11 +56,11 @@ public class Cargo implements Serializable{
 		this.empresa = empresa;
 	}
 
-	public double getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(double valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 	
