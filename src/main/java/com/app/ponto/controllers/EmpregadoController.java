@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.ponto.models.Empregado;
 import com.app.ponto.repository.EmpregadoRepository;
+import com.app.ponto.repository.EmpresaRepository;
 
 
 
@@ -23,6 +24,7 @@ public class EmpregadoController {
 	
 	@Autowired
 	private EmpregadoRepository er;
+	private EmpresaRepository empr;
 	
 	 @GetMapping("/all")
      public ResponseEntity<Iterable<Empregado>> list() {
@@ -31,12 +33,21 @@ public class EmpregadoController {
 	
 	 @PostMapping
 	 public ResponseEntity<Empregado> insert(@RequestBody Empregado emp) {
-         er.save(emp);  
+		 boolean achou = false;
+	 		ArrayList<Empregado> alvo = new ArrayList<Empregado>();
+	 		Iterable<Empregado> empregados = er.findAll();
+	         for (Empregado empB : empregados) {
+	             if(empB.getCpf() == emp.getCpf()) {
+	            	 achou = true;
+	            	 alvo.add(empB);
+	             }
+	         }
+		 er.save(emp);  
          return ResponseEntity.ok(emp);
 	  }	 	
 	 
-	 @PostMapping(value = "/buscar")
-	 public ResponseEntity<ArrayList<Empregado>> logout(@RequestBody String cpf) {
+	 @PostMapping(value = "/busca")
+	 public ResponseEntity<ArrayList<Empregado>> find(@RequestBody String cpf) {
 	 		boolean achou = false;
 	 		ArrayList<Empregado> alvo = new ArrayList<Empregado>();
 	 		Iterable<Empregado> empregados = er.findAll();

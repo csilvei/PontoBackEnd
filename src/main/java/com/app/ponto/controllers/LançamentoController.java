@@ -1,6 +1,7 @@
 package com.app.ponto.controllers;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,20 +36,20 @@ public class LançamentoController {
 	  }	 	
 	 
 	 @PostMapping(value = "/buscaLan")
-	 public ResponseEntity<Lancamento> logout(@RequestBody long cod,long emp,Date dia) {
+	 public ResponseEntity<ArrayList<Lancamento>> logout(@RequestBody String cod,String emp,Date dia) {
 	 		boolean achou = false;
-	 		Lancamento alvo = null;
+	 		ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
 	 		Iterable<Lancamento> lanc = lr.findAll();
 	         for (Lancamento l : lanc) {
 	             if(l.getIduser() == cod && l.getIdempresa() == emp && l.getData() == dia) {
 	            	 achou = true;
-	            	 alvo = l;
+	            	 alvo.add(l);
 	             }
 	         }
 	         if(achou){  
                  return ResponseEntity.ok(alvo);
              }else {
-            	 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            	 return ResponseEntity.ok(alvo);
              }   
 	    }
 }	

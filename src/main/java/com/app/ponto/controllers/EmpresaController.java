@@ -32,9 +32,20 @@ public class EmpresaController {
      }	
 	
 	 @PostMapping("/criar")
-	 public ResponseEntity<Empresa> insert(@RequestBody Empresa empresa) {
-		 er.save(empresa);  
-         return ResponseEntity.ok(empresa);
+	 public ResponseEntity <Empresa> insert(@RequestBody Empresa empresa) {
+		    boolean achou = false;
+	 		Iterable<Empresa> empresas = er.findAll();
+	         for (Empresa empresaB : empresas) {
+	             if(empresaB.getCnpj() == empresa.getCnpj()) {
+	            	 achou = true;
+	             }
+	         }
+	         if(achou){  
+	        	 return  (ResponseEntity<Empresa>) ResponseEntity.badRequest();
+	         }else {
+        	  er.save(empresa);
+              return ResponseEntity.ok(empresa);
+	         }   
 	  }	 	
 	 
 	 @PostMapping("/busca")

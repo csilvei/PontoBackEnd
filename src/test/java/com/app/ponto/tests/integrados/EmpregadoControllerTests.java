@@ -26,9 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.math.BigDecimal;
-
-public class CargoControllerTests extends PontoApplicationTest{
+public class EmpregadoControllerTests extends PontoApplicationTest{
 
     
 
@@ -43,43 +41,42 @@ public class CargoControllerTests extends PontoApplicationTest{
     }
     
     @Test
-    public void criarCargoTest() throws Exception {
-    	BigDecimal sal = new BigDecimal("500.22");
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/cargo")
+    public void criarEmpresaTest() throws Exception {
+    	
+    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/empregado")
     											.contentType(MediaType.APPLICATION_JSON)
-                     						    .content(createCargoInJson("chefe",1,sal));
-    										    System.out.println(createCargoInJson("chefe",1,sal));
+                     						    .content(createEmpregadoInJson("carlos","52552525225","1"));
     										    this.mockMvc.perform(builder)
     										    .andExpect(MockMvcResultMatchers.status().isOk())
     										    .andDo(MockMvcResultHandlers.print());
     }
     
     @Test
-    public void ListaCargoTest() throws Exception {
+    public void ListaEmpresasTest() throws Exception {
 
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/cargo/all")
+        mockMvc.perform(MockMvcRequestBuilders.get("/empregado/all")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().string("[{\"id\":1,\"nome\":\"chefe\",\"empresa\":1,\"val\":500.00}]"));
+                .andExpect(content().string("[]"));
     }
     
     @Test
-    public void buscarCargoTest() throws Exception {
+    public void buscarEmpresasTest() throws Exception {
 
 
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/cargo/busca")
+    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/empresa/busca")
     			.contentType(MediaType.APPLICATION_JSON)
-    			.content("{" + "\"id\":\"" + "1" + "\"}");
+    			.content("{" + "\"cpf\":\"" + "52552525225" + "\"}");
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
     			.andDo(MockMvcResultHandlers.print());
     }
     
-    private static String createCargoInJson (String nome, long emp, BigDecimal val) {
+    private static String createEmpregadoInJson (String nome, String cpf, String empresa) {
         return "{ \"nome\": \"" + nome + "\", " +
-                            "\"empresa\":\"" + emp + "\"," +
-                            "\"valor\":\"" + val + "\"}";
+                            "\"cpf\":\"" + cpf + "\"," +
+                            "\"empresa\":\"" + empresa + "\"}";
     }
 }

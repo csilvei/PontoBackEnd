@@ -1,6 +1,7 @@
 package com.app.ponto.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -23,16 +24,16 @@ public class Banco implements Serializable{
 	private long   id;
 	
 	@NotNull
-	private long iduser;
+	private String iduser;
 	
 	@NotNull
-	private long idempresa;
+	private String idempresa;
 		
 	@NotNull
-	private double TotalPositivas;
+	private BigDecimal TotalPositivas;
 	
 	@NotNull
-	private double TotalNegativas;
+	private BigDecimal TotalNegativas;
 
 	public long getId() {
 		return id;
@@ -42,39 +43,42 @@ public class Banco implements Serializable{
 		this.id = id;
 	}
 
-	public long getIduser() {
+	public String getIduser() {
 		return iduser;
 	}
 
-	public void setIduser(long iduser) {
+	public void setIduser(String iduser) {
 		this.iduser = iduser;
 	}
 
-	public long getIdempresa() {
+	public String getIdempresa() {
 		return idempresa;
 	}
 
-	public void setIdempresa(long idempresa) {
+	public void setIdempresa(String idempresa) {
 		this.idempresa = idempresa;
 	}
 
-
-	public double getTotalPositivas() {
+	public BigDecimal getTotalPositivas() {
 		return TotalPositivas;
 	}
 
-	public void setTotalPositivas(double totalPositivas) {
+	public void setTotalPositivas(BigDecimal totalPositivas) {
 		TotalPositivas = totalPositivas;
 	}
 
-	public double getTotalNegativas() {
+	public BigDecimal getTotalNegativas() {
 		return TotalNegativas;
 	}
 
-	public void setTotalNegativas(double totalNegativas) {
+	public void setTotalNegativas(BigDecimal totalNegativas) {
 		TotalNegativas = totalNegativas;
 	}
 
-	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 	
 }

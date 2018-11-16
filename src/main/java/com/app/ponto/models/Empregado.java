@@ -23,22 +23,20 @@ public class Empregado implements Serializable{
 	private long   id;
 	
 	@NotNull
-	private long usuario;
-	
-	@NotNull
 	private String nome;
 	
 	@NotNull
 	private String cpf;
 	
 	@NotNull
-	private long cargo;
-	
-	@NotNull
-	private long empresa;
+	private String empresa;
 
 	public long getId() {
 		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -57,32 +55,18 @@ public class Empregado implements Serializable{
 		this.cpf = cpf;
 	}
 
-	public long getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(long cargo) {
-		this.cargo = cargo;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public long getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(long usuario) {
-		this.usuario = usuario;
-	}
-
-	public long getEmpresa() {
+	public String getEmpresa() {
 		return empresa;
 	}
 
-	public void setEmpresa(long empresa) {
+	public void setEmpresa(String empresa) {
 		this.empresa = empresa;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 	
 }

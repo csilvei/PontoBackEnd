@@ -1,6 +1,7 @@
 package com.app.ponto.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -30,16 +31,9 @@ public class Empresa implements Serializable{
 	@NotNull
 	private int regime;
 	
-	
-	public String getCnpj() {
-		return cnpj;
-	}
+	@NotNull
+	private BigDecimal valorh;
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-
-	
 	public long getId() {
 		return id;
 	}
@@ -56,12 +50,33 @@ public class Empresa implements Serializable{
 		this.nome = nome;
 	}
 
-	public long getRegime() {
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public int getRegime() {
 		return regime;
 	}
 
 	public void setRegime(int regime) {
 		this.regime = regime;
 	}
+
+	public BigDecimal getValorh() {
+		return valorh;
+	}
+
+	public void setValorh(BigDecimal valorh) {
+		this.valorh = valorh;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 	
 }

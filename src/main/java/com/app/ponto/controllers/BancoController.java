@@ -1,5 +1,7 @@
 package com.app.ponto.controllers;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,20 +35,20 @@ public class BancoController {
 	  }	 	
 	 
 	 @PostMapping(value = "/buscabanco")
-	 public ResponseEntity<Banco> logout(@RequestBody long cod,long emp) {
+	 public ResponseEntity<ArrayList<Banco>> logout(@RequestBody String cod,String emp) {
 	 		boolean achou = false;
-	 		Banco alvo = null;
+	 		ArrayList<Banco> alvo = new ArrayList<Banco>();
 	 		Iterable<Banco> bancos = br.findAll();
 	         for (Banco cB : bancos) {
 	             if(cB.getIduser() == cod && cB.getIdempresa() == emp) {
 	            	 achou = true;
-	            	 alvo = cB;
+	            	 alvo.add(cB);
 	             }
 	         }
 	         if(achou){  
                  return ResponseEntity.ok(alvo);
              }else {
-            	 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            	 return ResponseEntity.ok(alvo);
              }   
 	    }
 }	
