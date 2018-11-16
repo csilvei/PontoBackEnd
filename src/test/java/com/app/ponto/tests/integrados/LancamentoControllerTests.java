@@ -45,7 +45,7 @@ public class LancamentoControllerTests extends PontoApplicationTest{
     	
     	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/lancamento")
     											.contentType(MediaType.APPLICATION_JSON)
-                     						    .content(createLancInJson("1","1","11/15/2018","8.25","1.25"));
+                     						    .content(createLancInJson("1","1","2018-11-15","8.2","1.2"));
     										    this.mockMvc.perform(builder)
     										    .andExpect(MockMvcResultMatchers.status().isOk())
     										    .andDo(MockMvcResultHandlers.print());
@@ -58,7 +58,7 @@ public class LancamentoControllerTests extends PontoApplicationTest{
 
     	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/lancamento/busca")
     			.contentType(MediaType.APPLICATION_JSON)
-    			.content("{" + "\"iduser\":\"" + "1" +  "\"idempresa\":\"" + "1" +  "\"data\":\"" + "11/15/2018" + "\"}");
+    			.content("{" + "\"iduser\":\"" + "1" +  "\"idempresa\":\"" + "1" +  "\"data\":\"" + "2018-11-15" + "\"}");
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
     			.andDo(MockMvcResultHandlers.print());
@@ -77,10 +77,11 @@ public class LancamentoControllerTests extends PontoApplicationTest{
     }
     
     private static String createLancInJson (String iduser, String idempresa, String data,String horaspos,String horasneg) {
-        return "{ \"iduser\": \"" + iduser + "\", " +
+        return "{" + "\"data\":\"" + data + "\"," +
                             "\"idempresa\":\"" + idempresa + "\"," +
-                            "\"data\":\"" + data +
-                            "\"horaspos\":\"" + horaspos +
-                            "\"horasneg\":\"" + horasneg +"\"}";
+                            "\"iduser\": \"" + iduser + "\", " +
+                            "\"neg\":\"" + horasneg  + "\", " +
+                            "\"pos\":\"" + horaspos +  
+                             "\"}";
     }
 }

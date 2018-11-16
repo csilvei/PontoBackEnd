@@ -30,10 +30,10 @@ public class Banco implements Serializable{
 	private String idempresa;
 		
 	@NotNull
-	private BigDecimal totalpos;
+	private BigDecimal pos;
 	
 	@NotNull
-	private BigDecimal totalneg;
+	private BigDecimal neg;
 
 	public long getId() {
 		return id;
@@ -59,24 +59,22 @@ public class Banco implements Serializable{
 		this.idempresa = idempresa;
 	}
 
-	public BigDecimal getTotalpos() {
-		return totalpos;
+	public BigDecimal getPos() {
+		return pos;
 	}
 
-	public void setTotalpos(BigDecimal totalpos) {
-		this.totalpos = totalpos;
+	public void setPos(BigDecimal pos) {
+		this.pos = pos;
 	}
 
-	public BigDecimal getTotalneg() {
-		return totalneg;
+	public BigDecimal getNeg() {
+		return neg;
 	}
 
-	public void setTotalneg(BigDecimal totalneg) {
-		this.totalneg = totalneg;
+	public void setNeg(BigDecimal neg) {
+		this.neg = neg;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+
 	
 }

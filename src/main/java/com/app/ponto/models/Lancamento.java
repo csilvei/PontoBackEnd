@@ -34,10 +34,10 @@ public class Lancamento implements Serializable{
 	private Date data;
 	
 	@NotNull
-	private BigDecimal horaspos;
+	private BigDecimal pos;
 	
 	@NotNull
-	private BigDecimal horasneg;
+	private BigDecimal neg;
 
 	public long getId() {
 		return id;
@@ -70,28 +70,4 @@ public class Lancamento implements Serializable{
 	public void setData(Date data) {
 		this.data = data;
 	}
-
-	public BigDecimal getHoraspos() {
-		return horaspos;
-	}
-
-	public void setHoraspos(BigDecimal horaspos) {
-		this.horaspos = horaspos;
-	}
-
-	public BigDecimal getHorasneg() {
-		return horasneg;
-	}
-
-	public void setHorasneg(BigDecimal horasneg) {
-		this.horasneg = horasneg;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-
-	
-	
 }
