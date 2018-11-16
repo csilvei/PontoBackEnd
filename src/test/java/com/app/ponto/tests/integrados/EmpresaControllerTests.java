@@ -50,18 +50,7 @@ public class EmpresaControllerTests extends PontoApplicationTest{
     										    .andExpect(MockMvcResultMatchers.status().isOk())
     										    .andDo(MockMvcResultHandlers.print());
     }
-    
-    @Test
-    public void criarEmpresaMesmoCnpjTest() throws Exception {
-    	
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/empresa/criar")
-    											.contentType(MediaType.APPLICATION_JSON)
-                     						    .content(createEmpresaInJson("empresteste2","111111111111111","8","20"));
-    										    this.mockMvc.perform(builder)
-    										    .andExpect(MockMvcResultMatchers.status().isBadRequest())
-    										    .andDo(MockMvcResultHandlers.print());
-    }
-    
+      
     @Test
     public void ListaEmpresasTest() throws Exception {
 

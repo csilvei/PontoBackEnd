@@ -23,10 +23,6 @@ public class BancoController {
 	@Autowired
 	private BancoRepository br;
 	
-	 @GetMapping("/all")
-     public ResponseEntity<Iterable<Banco>> list() {
-       return ResponseEntity.ok(br.findAll());
-     }	
 	
 	 @PostMapping
 	 public ResponseEntity<Banco> insert(@RequestBody Banco banco) {
@@ -34,8 +30,8 @@ public class BancoController {
          return ResponseEntity.ok(banco);
 	  }	 	
 	 
-	 @PostMapping(value = "/buscabanco")
-	 public ResponseEntity<ArrayList<Banco>> logout(@RequestBody String cod,String emp) {
+	 @PostMapping(value = "/busca")
+	 public ResponseEntity<ArrayList<Banco>> find(@RequestBody String cod,String emp) {
 	 		boolean achou = false;
 	 		ArrayList<Banco> alvo = new ArrayList<Banco>();
 	 		Iterable<Banco> bancos = br.findAll();

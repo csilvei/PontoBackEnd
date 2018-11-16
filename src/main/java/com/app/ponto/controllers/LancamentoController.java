@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.ponto.models.Empresa;
 import com.app.ponto.models.Lancamento;
 import com.app.ponto.repository.LancamentoRepository;
 
@@ -19,29 +20,39 @@ import com.app.ponto.repository.LancamentoRepository;
 
 @RestController
 @RequestMapping("/lancamento")
-public class LançamentoController {
+public class LancamentoController {
 	
 	@Autowired
 	private LancamentoRepository lr;
 	
-	 @GetMapping("/all")
-     public ResponseEntity<Iterable<Lancamento>> list() {
-       return ResponseEntity.ok(lr.findAll());
-     }	
-	
+
 	 @PostMapping
 	 public ResponseEntity<Lancamento> insert(@RequestBody Lancamento lanc) {
          lr.save(lanc);  
          return ResponseEntity.ok(lanc);
 	  }	 	
 	 
-	 @PostMapping(value = "/buscaLan")
-	 public ResponseEntity<ArrayList<Lancamento>> logout(@RequestBody String cod,String emp,Date dia) {
+	 @PostMapping("/all")
+     public ResponseEntity<ArrayList<Lancamento>> list(@RequestBody String cod,String emp) {
+
+	 		ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
+	 		Iterable<Lancamento> lanc = lr.findAll();
+	         for (Lancamento l : lanc) {
+	             if(l.getIduser() == cod && l.getIdempresa() == emp) {
+
+	            	 alvo.add(l);
+	             }
+	         }
+              return ResponseEntity.ok(alvo);
+     }	
+	 
+	 @PostMapping(value = "/busca")
+	 public ResponseEntity<ArrayList<Lancamento>> find(@RequestBody String cod,String empresa,Date dia) {
 	 		boolean achou = false;
 	 		ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
 	 		Iterable<Lancamento> lanc = lr.findAll();
 	         for (Lancamento l : lanc) {
-	             if(l.getIduser() == cod && l.getIdempresa() == emp && l.getData() == dia) {
+	             if(l.getIduser() == cod && l.getIdempresa() == empresa && l.getData() == dia) {
 	            	 achou = true;
 	            	 alvo.add(l);
 	             }

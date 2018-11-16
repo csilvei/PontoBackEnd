@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class EmpregadoControllerTests extends PontoApplicationTest{
+public class BancoControllerTests extends PontoApplicationTest{
 
     
 
@@ -41,42 +41,33 @@ public class EmpregadoControllerTests extends PontoApplicationTest{
     }
     
     @Test
-    public void criarEmpTest() throws Exception {
+    public void criarBancoTest() throws Exception {
     	
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/empregado")
+    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/banco")
     											.contentType(MediaType.APPLICATION_JSON)
-                     						    .content(createEmpregadoInJson("carlos","52552525225","1"));
+                     						    .content(createBancoInJson("1","1","100.00","50.00"));
     										    this.mockMvc.perform(builder)
     										    .andExpect(MockMvcResultMatchers.status().isOk())
     										    .andDo(MockMvcResultHandlers.print());
     }
     
-    @Test
-    public void ListaEmpTest() throws Exception {
-
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/empregado/all")
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().string("[]"));
-    }
     
     @Test
-    public void buscarEmpTest() throws Exception {
+    public void buscarBancoTest() throws Exception {
 
 
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/empresa/busca")
+    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/banco/busca")
     			.contentType(MediaType.APPLICATION_JSON)
-    			.content("{" + "\"cpf\":\"" + "52552525225" + "\"}");
+    			.content("{" + "\"iduser\":\"" + "1" +  "\"idempresa\":\"" + "1" +"\"}");
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
     			.andDo(MockMvcResultHandlers.print());
     }
     
-    private static String createEmpregadoInJson (String nome, String cpf, String empresa) {
-        return "{ \"nome\": \"" + nome + "\", " +
-                            "\"cpf\":\"" + cpf + "\"," +
-                            "\"empresa\":\"" + empresa + "\"}";
+    private static String createBancoInJson (String iduser, String idempresa, String pos,String neg) {
+        return "{ \"iduser\": \"" + iduser + "\", " +
+                            "\"idempresa\":\"" + idempresa + "\"," +
+                            "\"totalpos\":\"" + pos + 
+                            "\"totalneg\":\"" + neg + "\"}";
     }
 }

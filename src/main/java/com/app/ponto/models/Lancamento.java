@@ -1,6 +1,7 @@
 package com.app.ponto.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Basic;
@@ -33,16 +34,10 @@ public class Lancamento implements Serializable{
 	private Date data;
 	
 	@NotNull
-	private Date entradaA;
+	private BigDecimal horaspos;
 	
 	@NotNull
-	private Date saidaA;
-	
-	@NotNull
-	private Date entradaB;
-	
-	@NotNull
-	private Date saidaB;
+	private BigDecimal horasneg;
 
 	public long getId() {
 		return id;
@@ -76,41 +71,27 @@ public class Lancamento implements Serializable{
 		this.data = data;
 	}
 
-	public Date getEntradaA() {
-		return entradaA;
+	public BigDecimal getHoraspos() {
+		return horaspos;
 	}
 
-	public void setEntradaA(Date entradaA) {
-		this.entradaA = entradaA;
+	public void setHoraspos(BigDecimal horaspos) {
+		this.horaspos = horaspos;
 	}
 
-	public Date getSaidaA() {
-		return saidaA;
+	public BigDecimal getHorasneg() {
+		return horasneg;
 	}
 
-	public void setSaidaA(Date saidaA) {
-		this.saidaA = saidaA;
-	}
-
-	public Date getEntradaB() {
-		return entradaB;
-	}
-
-	public void setEntradaB(Date entradaB) {
-		this.entradaB = entradaB;
-	}
-
-	public Date getSaidaB() {
-		return saidaB;
-	}
-
-	public void setSaidaB(Date saidaB) {
-		this.saidaB = saidaB;
+	public void setHorasneg(BigDecimal horasneg) {
+		this.horasneg = horasneg;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 
+	
 	
 }
