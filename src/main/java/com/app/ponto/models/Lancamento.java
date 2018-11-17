@@ -1,8 +1,7 @@
 package com.app.ponto.models;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -25,17 +24,17 @@ public class Lancamento implements Serializable{
 	private long   id;
 	
 	@NotNull
-	private String iduser;
-	
+	private String user;
+
 	@NotNull
-	private String idempresa;
-	
+	private String empresa;
+
 	@NotNull
 	private Date data;
-	
+
 	@NotNull
 	private BigDecimal pos;
-	
+
 	@NotNull
 	private BigDecimal neg;
 
@@ -47,20 +46,20 @@ public class Lancamento implements Serializable{
 		this.id = id;
 	}
 
-	public String getIduser() {
-		return iduser;
+	public String getUser() {
+		return user;
 	}
 
-	public void setIduser(String iduser) {
-		this.iduser = iduser;
+	public void setUser(String user) {
+		this.user = user;
 	}
 
-	public String getIdempresa() {
-		return idempresa;
+	public String getEmpresa() {
+		return empresa;
 	}
 
-	public void setIdempresa(String idempresa) {
-		this.idempresa = idempresa;
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
 	}
 
 	public Date getData() {
@@ -70,4 +69,24 @@ public class Lancamento implements Serializable{
 	public void setData(Date data) {
 		this.data = data;
 	}
+
+	public BigDecimal getPos() {
+		return pos;
+	}
+
+	public void setPos(BigDecimal pos) {
+		this.pos = pos;
+	}
+
+	public BigDecimal getNeg() {
+		return neg;
+	}
+
+	public void setNeg(BigDecimal neg) {
+		this.neg = neg;
+	}
+	
+
 }
+
+

@@ -46,6 +46,7 @@ public class LancamentoControllerTests extends PontoApplicationTest{
     	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/lancamento")
     											.contentType(MediaType.APPLICATION_JSON)
                      						    .content(createLancInJson("1","1","2018-11-15","8.2","1.2"));
+    											System.out.println(createLancInJson("1","1","2018-11-15","8.2","1.2"));
     										    this.mockMvc.perform(builder)
     										    .andExpect(MockMvcResultMatchers.status().isOk())
     										    .andDo(MockMvcResultHandlers.print());
@@ -58,7 +59,7 @@ public class LancamentoControllerTests extends PontoApplicationTest{
 
     	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/lancamento/busca")
     			.contentType(MediaType.APPLICATION_JSON)
-    			.content("{" + "\"iduser\":\"" + "1" +  "\"idempresa\":\"" + "1" +  "\"data\":\"" + "2018-11-15" + "\"}");
+    			.content("{" + "\"user\":\"" + "1" +  "\"empresa\":\"" + "1" +  "\"data\":\"" + "2018-11-15" + "\"}");
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
     			.andDo(MockMvcResultHandlers.print());
@@ -70,18 +71,17 @@ public class LancamentoControllerTests extends PontoApplicationTest{
 
     	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/lancamento/all")
     			.contentType(MediaType.APPLICATION_JSON)
-    			.content("{" + "\"iduser\":\"" + "1" +  "\"idempresa\":\"" + "1"  + "\"}");
+    			.content("{" + "\"user\":\"" + "1" +  "\"empresa\":\"" + "1"  + "\"}");
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
     			.andDo(MockMvcResultHandlers.print());
     }
     
     private static String createLancInJson (String iduser, String idempresa, String data,String horaspos,String horasneg) {
-        return "{" + "\"data\":\"" + data + "\"," +
-                            "\"idempresa\":\"" + idempresa + "\"," +
-                            "\"iduser\": \"" + iduser + "\", " +
-                            "\"neg\":\"" + horasneg  + "\", " +
-                            "\"pos\":\"" + horaspos +  
-                             "\"}";
+        return "{" + "\"empresa\":\"" + idempresa + "\","
+        		   + "\"user\":\"" + iduser + "\"," 
+        		   + "\"data\":\"" + data + "\"," +
+        		   	 "\"neg\":\"" + horasneg  + "\"," +
+                     "\"pos\":\"" + horaspos +  "\"}";
     }
 }

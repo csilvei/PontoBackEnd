@@ -46,6 +46,7 @@ public class BancoControllerTests extends PontoApplicationTest{
     	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/banco")
     											.contentType(MediaType.APPLICATION_JSON)
                      						    .content(createBancoInJson("1","1","100","50"));
+    											System.out.println(createBancoInJson("1","1","100","50"));
     										    this.mockMvc.perform(builder)
     										    .andExpect(MockMvcResultMatchers.status().isOk())
     										    .andDo(MockMvcResultHandlers.print());
@@ -65,9 +66,9 @@ public class BancoControllerTests extends PontoApplicationTest{
     }
     
     private static String createBancoInJson (String iduser, String idempresa, String pos,String neg) {
-        return "{ \"iduser\": \"" + iduser + "\", " +
-                            "\"idempresa\":\"" + idempresa + "\"," +
-                            "\"pos\":\"" + pos + 
-                            "\"neg\":\"" + neg + "\"}";
+        return "{ \"iduser\": \"" + iduser + "\"," +
+                 "\"idempresa\":\"" + idempresa + "\"," +
+                 "\"pos\":\"" + pos + "\"," +
+                 "\"neg\":\"" + neg + "\"}";
     }
 }

@@ -48,7 +48,8 @@ public class EmpresaControllerTests extends PontoApplicationTest{
                      						    .content(createEmpresaInJson("empresteste","111111111111111","8","20"));
     										    this.mockMvc.perform(builder)
     										    .andExpect(MockMvcResultMatchers.status().isOk())
-    										    .andDo(MockMvcResultHandlers.print());
+    										    .andExpect(content().string("{\"id\":1,\"nome\":\"empresteste\",\"cnpj\":\"111111111111111\",\"regime\":8,\"valorh\":20}"));
+    										    
     }
       
     @Test
@@ -70,8 +71,8 @@ public class EmpresaControllerTests extends PontoApplicationTest{
     			.contentType(MediaType.APPLICATION_JSON)
     			.content("{" + "\"cnpj\":\"" + "111111111111111" + "\"}");
     			this.mockMvc.perform(builder)
-    			.andExpect(MockMvcResultMatchers.status().isOk())
-    			.andDo(MockMvcResultHandlers.print());
+    			.andExpect(MockMvcResultMatchers.status().isOk());
+
     }
     
     private static String createEmpresaInJson (String nome, String cnpj, String regime,String valorh) {

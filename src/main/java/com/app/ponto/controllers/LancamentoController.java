@@ -38,7 +38,7 @@ public class LancamentoController {
 	 		ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
 	 		Iterable<Lancamento> lanc = lr.findAll();
 	         for (Lancamento l : lanc) {
-	             if(l.getIduser() == cod && l.getIdempresa() == emp) {
+	             if(l.getUser() == cod && l.getEmpresa() == emp) {
 
 	            	 alvo.add(l);
 	             }
@@ -52,7 +52,7 @@ public class LancamentoController {
 	 		ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
 	 		Iterable<Lancamento> lanc = lr.findAll();
 	         for (Lancamento l : lanc) {
-	             if(l.getIduser() == cod && l.getIdempresa() == empresa && l.getData() == dia) {
+	             if(l.getUser() == cod && l.getEmpresa() == empresa && l.getData() == dia) {
 	            	 achou = true;
 	            	 alvo.add(l);
 	             }
