@@ -55,16 +55,14 @@ public class LancamentoController {
      }	
 	 
 	 @GetMapping(value = "/busca/{cod}/{emp}/{dia}/{mes}/{ano}")
-	 public ResponseEntity<ArrayList<Lancamento>> find(@PathVariable("cod") String cod,@PathVariable("emp") String emp,@PathVariable("dia") String dia,@PathVariable("mes") String mes,@PathVariable("ano") String ano) throws ParseException {
+	 public ResponseEntity<ArrayList<Lancamento>> find(@PathVariable("cod") String cod,@PathVariable("emp") String emp,@PathVariable("dia") String dia,@PathVariable("mes") String mes,@PathVariable("ano") String ano) {
 	 		boolean achou = false;
 	 		ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
 	 		Iterable<Lancamento> lanc = lr.findAll();
 	         for (Lancamento l : lanc) {
-	             if(l.getEmpregado().equalsIgnoreCase(cod) && l.getEmpresa().equalsIgnoreCase(emp) ) {
-	            	 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-	            	 Date data  = (Date) formato.parse(dia + mes + ano);
-	            	 Date data2 = (Date) formato.parse(l.getDia() + l.getMes() + l.getAno());
-	            	 if(data2.equals(data)) {
+	             if(l.getEmpregado().equalsIgnoreCase(cod) && l.getEmpresa().equalsIgnoreCase(emp) ) {	            	 
+	            	 
+	            	 if(l.getDia().equals(dia) && l.getMes().equals(mes) && l.getAno().equals(ano)) {
 	            		 achou = true;
 		            	 alvo.add(l);
 	            	 } 
