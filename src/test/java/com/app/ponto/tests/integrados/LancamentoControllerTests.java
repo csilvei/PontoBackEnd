@@ -57,7 +57,7 @@ public class LancamentoControllerTests extends PontoApplicationTest{
     public void buscarLancTest() throws Exception {
 
 
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/lancamento/busca/{cod}/{emp}/{dia}","1","1","2018-11-05");
+    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/lancamento/busca/{cod}/{emp}/{dia}/{mes}/{ano}","1","1","05","11","2018");
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
     			.andDo(MockMvcResultHandlers.print());

@@ -50,15 +50,15 @@ public class LancamentoController {
               return ResponseEntity.ok(alvo);
      }	
 	 
-	 @GetMapping(value = "/busca/{cod}/{emp}/{dia}")
-	 public ResponseEntity<ArrayList<Lancamento>> find(@PathVariable("cod") String cod,@PathVariable("emp") String emp,@PathVariable("dia") String dia) throws ParseException {
+	 @GetMapping(value = "/busca/{cod}/{emp}/{dia}/{mes}/{ano}")
+	 public ResponseEntity<ArrayList<Lancamento>> find(@PathVariable("cod") String cod,@PathVariable("emp") String emp,@PathVariable("dia") String dia,@PathVariable("mes") String mes,@PathVariable("ano") String ano) throws ParseException {
 	 		boolean achou = false;
 	 		ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
 	 		Iterable<Lancamento> lanc = lr.findAll();
 	         for (Lancamento l : lanc) {
 	             if(l.getUser().equalsIgnoreCase(cod) && l.getEmpresa().equalsIgnoreCase(emp) ) {
-	            	 SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-	            	 Date data = (Date) formato.parse(dia);
+	            	 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+	            	 Date data = (Date) formato.parse(dia + mes + ano);
 	            	 if(l.getData().equals(data)) {
 	            		 achou = true;
 		            	 alvo.add(l);
