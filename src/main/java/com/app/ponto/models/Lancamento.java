@@ -24,7 +24,7 @@ public class Lancamento implements Serializable{
 	private long   id;
 	
 	@NotNull
-	private String user;
+	private String empregado;
 
 	@NotNull
 	private String empresa;
@@ -47,11 +47,11 @@ public class Lancamento implements Serializable{
 	}
 
 	public String getUser() {
-		return user;
+		return empregado;
 	}
 
 	public void setUser(String user) {
-		this.user = user;
+		this.empregado = user;
 	}
 
 	public String getEmpresa() {
