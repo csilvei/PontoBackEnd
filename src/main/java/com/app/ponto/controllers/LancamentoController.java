@@ -50,6 +50,9 @@ public class LancamentoController {
      public ResponseEntity<ArrayList<Lancamento>> list(@PathVariable("cod") String cod,@PathVariable("emp") String emp,@PathVariable("mes") String mes,@PathVariable("ano") String ano) {
 		 boolean achou = false;
 		 ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
+		 	if(mes != "1" && mes != "2" && mes != "3" && mes != "4" && mes != "5" && mes != "6" && mes != "7" && mes != "8" && mes != "9") {
+		 		mes = "0" + mes;
+		 	}
 	 		Iterable<Lancamento> lanc = lr.findAll();
 	         for (Lancamento l : lanc) {
 	             if(l.getEmpregado().equalsIgnoreCase(cod) && l.getEmpresa().equalsIgnoreCase(emp) && l.getMes().equalsIgnoreCase(mes) && l.getAno().equalsIgnoreCase(ano)) {
