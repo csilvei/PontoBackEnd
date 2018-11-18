@@ -43,7 +43,7 @@ public class BancoControllerTests extends PontoApplicationTest{
     @Test
     public void criarBancoTest() throws Exception {
     	
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/banco")
+    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/Banco")
     											.contentType(MediaType.APPLICATION_JSON)
                      						    .content(createBancoInJson("1","1","100","50","50"));
     											System.out.println(createBancoInJson("1","1","100","50","50"));
@@ -57,7 +57,7 @@ public class BancoControllerTests extends PontoApplicationTest{
     public void buscarBancoTest() throws Exception {
 
 
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/banco/busca/{cpf}/{empresa}","1111111","222222");
+    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/Banco/busca/{cpf}/{empresa}","1111111","222222");
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
     			.andDo(MockMvcResultHandlers.print());
