@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.ponto.models.Banco;
+import com.app.ponto.models.banco;
 import com.app.ponto.repository.BancoRepository;
 
 
@@ -26,12 +26,12 @@ public class BancoController {
 	
 	
 	 @PostMapping
-	 public ResponseEntity<ArrayList<Banco>> insert(@RequestBody Banco banco) {
+	 public ResponseEntity<ArrayList<banco>> insert(@RequestBody banco banco) {
 		 
-		 ArrayList<Banco> alvo = new ArrayList<Banco>();
-	 		Iterable<Banco> bancos = br.findAll();
+		 ArrayList<banco> alvo = new ArrayList<banco>();
+	 		Iterable<banco> bancos = br.findAll();
 	 		 boolean achou = false;
-	         for (Banco cB : bancos) {
+	         for (banco cB : bancos) {
 	             if(cB.getuser() == banco.getuser() && cB.getempresa() == banco.getempresa()) {
 	            	 achou = true;
 	            	 cB.setNeg(banco.getNeg());
@@ -50,11 +50,11 @@ public class BancoController {
 	  }	 	
 	 
 	 @GetMapping(value = "/busca/{cpf}/{empresa}")
-	 public ResponseEntity<ArrayList<Banco>> find(@PathVariable("cpf") String cpf,@PathVariable("empresa") String empresa) {
+	 public ResponseEntity<ArrayList<banco>> find(@PathVariable("cpf") String cpf,@PathVariable("empresa") String empresa) {
 	 		boolean achou = false;
-	 		ArrayList<Banco> alvo = new ArrayList<Banco>();
-	 		Iterable<Banco> bancos = br.findAll();
-	         for (Banco cB : bancos) {
+	 		ArrayList<banco> alvo = new ArrayList<banco>();
+	 		Iterable<banco> bancos = br.findAll();
+	         for (banco cB : bancos) {
 	             if(cB.getuser() == cpf && cB.getempresa() == empresa) {
 	            	 achou = true;
 	            	 alvo.add(cB);
