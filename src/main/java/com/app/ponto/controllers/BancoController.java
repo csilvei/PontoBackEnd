@@ -44,6 +44,7 @@ public class BancoController {
 	        	 return ResponseEntity.ok(alvo);
 	         }else {
 	        	 br.save(banco); 
+	        	 alvo.add(banco);
 	        	 return ResponseEntity.ok(alvo);
 	         }   
 	  }	 	
