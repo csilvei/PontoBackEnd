@@ -24,7 +24,7 @@ public class Banco implements Serializable{
 	private long   id;
 	
 	@NotNull
-	private String empregado;
+	private String user;
 	
 	@NotNull
 	private String empresa;
@@ -54,11 +54,11 @@ public class Banco implements Serializable{
 	}
 
 	public String getuser() {
-		return empregado;
+		return user;
 	}
 
 	public void setuser(String iduser) {
-		this.empregado = iduser;
+		this.user = iduser;
 	}
 
 	public String getempresa() {
