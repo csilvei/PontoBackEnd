@@ -67,9 +67,7 @@ public class EmpresaControllerTests extends PontoApplicationTest{
     public void buscarEmpresasTest() throws Exception {
 
 
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/empresa/busca")
-    			.contentType(MediaType.APPLICATION_JSON)
-    			.content("111111111111111");
+    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/empresa/busca/{cnpj}","111111111111111" );
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
     			.andExpect(content().string("[{\"id\":1,\"nome\":\"empresteste\",\"cnpj\":\"111111111111111\",\"regime\":8,\"valorh\":20.00}]"));

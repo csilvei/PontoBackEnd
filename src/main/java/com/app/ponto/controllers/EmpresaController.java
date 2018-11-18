@@ -37,8 +37,8 @@ public class EmpresaController {
               return ResponseEntity.ok(empresa);  
 	  }	 	
 	 
-	 @PostMapping("/busca")
-	 public ResponseEntity<ArrayList<Empresa>> findBycnpj(@RequestBody String cnpj) {
+	 @GetMapping("/busca/{cnpj}")
+	 public ResponseEntity<ArrayList<Empresa>> findBycnpj(@PathVariable("cnpj") String cnpj) {
 	 		boolean achou = false;
 	 		ArrayList<Empresa> alvo = new ArrayList<Empresa>();
 	 		Iterable<Empresa> empresas = er.findAll();
