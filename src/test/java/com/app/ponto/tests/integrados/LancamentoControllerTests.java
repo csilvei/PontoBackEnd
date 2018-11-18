@@ -75,7 +75,7 @@ public class LancamentoControllerTests extends PontoApplicationTest{
 			    .andExpect(MockMvcResultMatchers.status().isOk())
 			    .andDo(MockMvcResultHandlers.print());
 
-    	builder = MockMvcRequestBuilders.get("/lancamento/all/{cod}/{emp}/{mes}/{ano}","1","1","11","2018");
+    	builder = MockMvcRequestBuilders.get("/lancamento/all/{cod}/{emp}","1","1");
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
     			.andDo(MockMvcResultHandlers.print());
