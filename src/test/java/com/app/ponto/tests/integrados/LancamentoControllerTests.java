@@ -55,7 +55,8 @@ public class LancamentoControllerTests extends PontoApplicationTest{
     
     @Test
     public void buscarLancTest() throws Exception {
-
+    	
+    	
 
     	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/lancamento/busca/{cod}/{emp}/{dia}/{mes}/{ano}","1","1","3","10","2018");
     			this.mockMvc.perform(builder)
@@ -65,9 +66,16 @@ public class LancamentoControllerTests extends PontoApplicationTest{
     
     @Test
     public void buscarLancEspecificoTest() throws Exception {
+    	
+    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/lancamento")
+				.contentType(MediaType.APPLICATION_JSON)
+				    .content(createLancInJson("1","1","01","11","2018","8.2","1.2"));
+				System.out.println(createLancInJson("1","1","01","11","2018","8.2","1.2"));
+			    this.mockMvc.perform(builder)
+			    .andExpect(MockMvcResultMatchers.status().isOk())
+			    .andDo(MockMvcResultHandlers.print());
 
-
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/lancamento/all/{cod}/{emp}","111111","222222");
+    	builder = MockMvcRequestBuilders.get("/lancamento/all/{cod}/{emp}","1","1");
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
     			.andDo(MockMvcResultHandlers.print());

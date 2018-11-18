@@ -42,7 +42,7 @@ public class LancamentoController {
 		 ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
 	 		Iterable<Lancamento> lanc = lr.findAll();
 	         for (Lancamento l : lanc) {
-	             if(l.getEmpregado() == cod && l.getEmpresa() == emp) {
+	             if(l.getEmpregado().equalsIgnoreCase(cod) && l.getEmpresa().equalsIgnoreCase(emp)) {
 	            	 achou = true;
 	            	 alvo.add(l);
 	             }
