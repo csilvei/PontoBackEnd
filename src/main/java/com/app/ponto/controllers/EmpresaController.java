@@ -43,7 +43,7 @@ public class EmpresaController {
 	 		ArrayList<Empresa> alvo = new ArrayList<Empresa>();
 	 		Iterable<Empresa> empresas = er.findAll();
 	         for (Empresa empresaB : empresas) {
-	             if(empresaB.getCnpj() == cnpj) {
+	             if(empresaB.getCnpj().equalsIgnoreCase(cnpj)) {
 	            	 achou = true;
 	            	 alvo.add(empresaB);
 	             }
