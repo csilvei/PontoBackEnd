@@ -30,14 +30,20 @@ public class Lancamento implements Serializable{
 	private String empresa;
 
 	@NotNull
-	private Date data;
+	private String dia;
+	
+	@NotNull
+	private String mes;
+	
+	@NotNull
+	private String ano;
 
 	@NotNull
 	private BigDecimal pos;
 
 	@NotNull
 	private BigDecimal neg;
-
+	
 	public long getId() {
 		return id;
 	}
@@ -46,12 +52,12 @@ public class Lancamento implements Serializable{
 		this.id = id;
 	}
 
-	public String getUser() {
+	public String getEmpregado() {
 		return empregado;
 	}
 
-	public void setUser(String user) {
-		this.empregado = user;
+	public void setEmpregado(String empregado) {
+		this.empregado = empregado;
 	}
 
 	public String getEmpresa() {
@@ -62,12 +68,28 @@ public class Lancamento implements Serializable{
 		this.empresa = empresa;
 	}
 
-	public Date getData() {
-		return data;
+	public String getDia() {
+		return dia;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setDia(String dia) {
+		this.dia = dia;
+	}
+
+	public String getMes() {
+		return mes;
+	}
+
+	public void setMes(String mes) {
+		this.mes = mes;
+	}
+
+	public String getAno() {
+		return ano;
+	}
+
+	public void setAno(String ano) {
+		this.ano = ano;
 	}
 
 	public BigDecimal getPos() {
@@ -85,7 +107,10 @@ public class Lancamento implements Serializable{
 	public void setNeg(BigDecimal neg) {
 		this.neg = neg;
 	}
+
 	
+
+
 
 }
 

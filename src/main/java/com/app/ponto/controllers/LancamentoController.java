@@ -36,18 +36,22 @@ public class LancamentoController {
          return ResponseEntity.ok(lanc);
 	  }	 	
 	 
-	 @PostMapping("/all")
-     public ResponseEntity<ArrayList<Lancamento>> list(@RequestBody String cod,String emp) {
-		 	emp.replaceAll("-", "/");
-	 		ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
+	 @GetMapping("/all/{cod}/{emp}")
+     public ResponseEntity<ArrayList<Lancamento>> list(@PathVariable("cod") String cod,@PathVariable("emp") String emp) {
+		 boolean achou = false;
+		 ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
 	 		Iterable<Lancamento> lanc = lr.findAll();
 	         for (Lancamento l : lanc) {
-	             if(l.getUser() == cod && l.getEmpresa() == emp) {
-
+	             if(l.getEmpregado() == cod && l.getEmpresa() == emp) {
+	            	 achou = true;
 	            	 alvo.add(l);
 	             }
 	         }
-              return ResponseEntity.ok(alvo);
+	         if(achou){  
+                 return ResponseEntity.ok(alvo);
+             }else {
+            	 return ResponseEntity.ok(alvo);
+             }  
      }	
 	 
 	 @GetMapping(value = "/busca/{cod}/{emp}/{dia}/{mes}/{ano}")
@@ -56,10 +60,11 @@ public class LancamentoController {
 	 		ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
 	 		Iterable<Lancamento> lanc = lr.findAll();
 	         for (Lancamento l : lanc) {
-	             if(l.getUser().equalsIgnoreCase(cod) && l.getEmpresa().equalsIgnoreCase(emp) ) {
+	             if(l.getEmpregado().equalsIgnoreCase(cod) && l.getEmpresa().equalsIgnoreCase(emp) ) {
 	            	 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-	            	 Date data = (Date) formato.parse(dia + mes + ano);
-	            	 if(l.getData().equals(data)) {
+	            	 Date data  = (Date) formato.parse(dia + mes + ano);
+	            	 Date data2 = (Date) formato.parse(l.getDia() + l.getMes() + l.getAno());
+	            	 if(data2.equals(data)) {
 	            		 achou = true;
 		            	 alvo.add(l);
 	            	 } 

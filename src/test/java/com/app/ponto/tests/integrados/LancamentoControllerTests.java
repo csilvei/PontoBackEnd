@@ -45,8 +45,8 @@ public class LancamentoControllerTests extends PontoApplicationTest{
     	
     	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/lancamento")
     											.contentType(MediaType.APPLICATION_JSON)
-                     						    .content(createLancInJson("1","1","2018-11-15","8.2","1.2"));
-    											System.out.println(createLancInJson("1","1","2018-11-15","8.2","1.2"));
+                     						    .content(createLancInJson("1","1","01","11","2018","8.2","1.2"));
+    											System.out.println(createLancInJson("1","1","01","11","2018","8.2","1.2"));
     										    this.mockMvc.perform(builder)
     										    .andExpect(MockMvcResultMatchers.status().isOk())
     										    .andDo(MockMvcResultHandlers.print());
@@ -67,18 +67,18 @@ public class LancamentoControllerTests extends PontoApplicationTest{
     public void buscarLancEspecificoTest() throws Exception {
 
 
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/lancamento/all")
-    			.contentType(MediaType.APPLICATION_JSON)
-    			.content("{" + "\"user\":\"" + "1" +  "\"empresa\":\"" + "1"  + "\"}");
+    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/lancamento/all/{cod}/{emp}","111111","222222");
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
     			.andDo(MockMvcResultHandlers.print());
     }
     
-    private static String createLancInJson (String iduser, String idempresa, String data,String horaspos,String horasneg) {
+    private static String createLancInJson (String iduser, String idempresa, String dia, String mes, String ano,String horaspos,String horasneg) {
         return "{" + "\"empresa\":\"" + idempresa + "\","
-        		   + "\"user\":\"" + iduser + "\"," 
-        		   + "\"data\":\"" + data + "\"," +
+        		   + "\"empregado\":\"" + iduser + "\"," 
+        		   + "\"dia\":\"" + dia + "\"," +
+        		   "\"mes\":\"" + mes  + "\"," +
+        		   "\"ano\":\"" + ano  + "\"," +
         		   	 "\"neg\":\"" + horasneg  + "\"," +
                      "\"pos\":\"" + horaspos +  "\"}";
     }
