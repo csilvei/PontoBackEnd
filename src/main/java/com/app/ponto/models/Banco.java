@@ -24,16 +24,26 @@ public class Banco implements Serializable{
 	private long   id;
 	
 	@NotNull
-	private String idempregado;
+	private String empregado;
 	
 	@NotNull
-	private String idempresa;
+	private String empresa;
 		
 	@NotNull
 	private BigDecimal pos;
 	
 	@NotNull
 	private BigDecimal neg;
+    @NotNull
+    private BigDecimal total;
+    
+	public BigDecimal getTotal() {
+		return total;
+	}
+
+	public void setTotal(BigDecimal total) {
+		this.total = total;
+	}
 
 	public long getId() {
 		return id;
@@ -43,20 +53,20 @@ public class Banco implements Serializable{
 		this.id = id;
 	}
 
-	public String getIduser() {
-		return idempregado;
+	public String getuser() {
+		return empregado;
 	}
 
-	public void setIduser(String iduser) {
-		this.idempregado = iduser;
+	public void setuser(String iduser) {
+		this.empregado = iduser;
 	}
 
-	public String getIdempresa() {
-		return idempresa;
+	public String getempresa() {
+		return empresa;
 	}
 
-	public void setIdempresa(String idempresa) {
-		this.idempresa = idempresa;
+	public void setempresa(String idempresa) {
+		this.empresa = idempresa;
 	}
 
 	public BigDecimal getPos() {
