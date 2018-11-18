@@ -36,13 +36,13 @@ public class LancamentoController {
          return ResponseEntity.ok(lanc);
 	  }	 	
 	 
-	 @GetMapping("/all/{cod}/{emp}")
-     public ResponseEntity<ArrayList<Lancamento>> list(@PathVariable("cod") String cod,@PathVariable("emp") String emp) {
+	 @GetMapping("/all/{cod}/{emp}/{mes}/{ano}")
+     public ResponseEntity<ArrayList<Lancamento>> list(@PathVariable("cod") String cod,@PathVariable("emp") String emp,@PathVariable("mes") String mes,@PathVariable("ano") String ano) {
 		 boolean achou = false;
 		 ArrayList<Lancamento> alvo = new ArrayList<Lancamento>();
 	 		Iterable<Lancamento> lanc = lr.findAll();
 	         for (Lancamento l : lanc) {
-	             if(l.getEmpregado().equalsIgnoreCase(cod) && l.getEmpresa().equalsIgnoreCase(emp)) {
+	             if(l.getEmpregado().equalsIgnoreCase(cod) && l.getEmpresa().equalsIgnoreCase(emp) && l.getMes().equalsIgnoreCase(mes) && l.getAno().equalsIgnoreCase(ano)) {
 	            	 achou = true;
 	            	 alvo.add(l);
 	             }
