@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,13 +47,13 @@ public class EmpregadoController {
          return ResponseEntity.ok(emp);
 	  }	 	
 	 
-	 @PostMapping(value = "/busca")
-	 public ResponseEntity<ArrayList<Empregado>> find(@RequestBody String cpf) {
+	 @GetMapping("/busca/{cpf}/{empresa}")
+	 public ResponseEntity<ArrayList<Empregado>> find(@PathVariable("cpf") String cpf,@PathVariable("empresa") String empresa) {
 	 		boolean achou = false;
 	 		ArrayList<Empregado> alvo = new ArrayList<Empregado>();
 	 		Iterable<Empregado> empregados = er.findAll();
 	         for (Empregado empB : empregados) {
-	             if(empB.getCpf() == cpf) {
+	             if(empB.getCpf().equalsIgnoreCase(cpf) && empB.getEmpresa().equalsIgnoreCase(empresa)) {
 	            	 achou = true;
 	            	 alvo.add(empB);
 	             }

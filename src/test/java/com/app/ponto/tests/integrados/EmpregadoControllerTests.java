@@ -45,7 +45,7 @@ public class EmpregadoControllerTests extends PontoApplicationTest{
     	
     	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/empregado")
     											.contentType(MediaType.APPLICATION_JSON)
-                     						    .content(createEmpregadoInJson("carlos","52552525225","1"));
+                     						    .content(createEmpregadoInJson("carlos","52552525225","111111111111111"));
     										    this.mockMvc.perform(builder)
     										    .andExpect(MockMvcResultMatchers.status().isOk())
     										    .andDo(MockMvcResultHandlers.print());
@@ -53,8 +53,7 @@ public class EmpregadoControllerTests extends PontoApplicationTest{
     
     @Test
     public void ListaEmpTest() throws Exception {
-
-
+    	
         mockMvc.perform(MockMvcRequestBuilders.get("/empregado/all")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -64,19 +63,24 @@ public class EmpregadoControllerTests extends PontoApplicationTest{
     
     @Test
     public void buscarEmpTest() throws Exception {
-
-
-    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/empresa/busca")
-    			.contentType(MediaType.APPLICATION_JSON)
-    			.content("{" + "\"cpf\":\"" + "52552525225" + "\"}");
+    	
+    	MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/empregado/busca/{cpf}/{empresa}","52552525225","111111111111111");
     			this.mockMvc.perform(builder)
     			.andExpect(MockMvcResultMatchers.status().isOk())
-    			.andDo(MockMvcResultHandlers.print());
+    			.andDo(MockMvcResultHandlers.print())
+    			.andExpect(content().string("[]"));
     }
     
     private static String createEmpregadoInJson (String nome, String cpf, String empresa) {
         return "{ \"nome\": \"" + nome + "\", " +
                             "\"cpf\":\"" + cpf + "\"," +
                             "\"empresa\":\"" + empresa + "\"}";
+    }
+    
+    private static String createEmpresaInJson (String nome, String cnpj, String regime,String valorh) {
+        return "{ \"nome\": \"" + nome + "\", " +
+                            "\"cnpj\":\"" + cnpj + "\"," +
+                            "\"regime\":\"" + regime + "\"," +
+                            "\"valorh\":\"" + valorh + "\"}";
     }
 }
